@@ -1,1 +1,5 @@
 @import "bootstrap";
+
+html, body, .container-body {
+  height: 100%;
+}

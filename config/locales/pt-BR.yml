@@ -6,3 +6,14 @@ pt-BR:
       notice: "Tarefa atualizada com sucesso!"
     destroy:
       notice: "Tarefa deletada com sucesso!"
+  activerecord: 
+    models:
+      task: "Tarefa"
+      
+    attributes:
+      task: 
+        description: "Descrição"
+        due_date: "Prazo"
+        done: "Tarefa concluída?"
+
+      

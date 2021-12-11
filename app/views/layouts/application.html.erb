@@ -11,15 +11,25 @@
   </head>
 
   <body>
-    <% flash.each do |type, message| %> <!-- Loop para exibir o array de mensagens(avisos) -->
-      <div class="alert alert-<%= type == "alert" ? "danger" : "success" %> alert-dismissible fade show" role="alert"> <!--- A cor vai ser alterada de acordo com o tipo de mensagem: * darger para o tipo alert; * sucess para outros (notice) -->
-        <%= message %> <!--Mensagem a ser exibida dinâmicamente-->
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <% end %>
+    <div class="container-fluid bg-primary container-body">
 
-    <%= yield %>
+      <div class="row d-flex h-100 align-items-center justify-content-center linha-background">
+        <div class="col-11 col-md-10 col-lg-7 shadow-lg p-5 mb-5 bg-white rounded coluna-background">
+
+          <% flash.each do |type, message| %> <!-- Loop para exibir o array de mensagens(avisos) -->
+            <div class="alert alert-<%= type == "alert" ? "danger" : "success" %> alert-dismissible fade show" role="alert"> <!--- A cor vai ser alterada de acordo com o tipo de mensagem: * darger para o tipo alert; * sucess para outros (notice) -->
+              <%= message %> <!--Mensagem a ser exibida dinâmicamente-->
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% end %>
+
+          <%= yield %> <!--Conteúdo de outras views-->
+
+        </div>
+      </div>
+
+    </div>
   </body>
 </html>
