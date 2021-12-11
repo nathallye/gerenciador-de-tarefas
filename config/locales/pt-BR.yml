@@ -1,0 +1,8 @@
+pt-BR:
+  tasks:
+    create:
+      notice: "Tarefa criada com sucesso!"
+    update:
+      notice: "Tarefa atualizada com sucesso!"
+    destroy:
+      notice: "Tarefa deletada com sucesso!"

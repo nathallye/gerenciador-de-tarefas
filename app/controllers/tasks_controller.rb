@@ -18,25 +18,29 @@ class TasksController < ApplicationController # Classe TaksController herda de A
   def create # CREATE vai criar um registro novo 
     @task = Task.new(task_params)
 
-    if @task.save
-      redirect_to @task, notice: "Task was successfully created." }
-    else
-      render :new, status: :unprocessable_entity }
+    if @task.save # Se for salva
+      redirect_to tasks_path, notice: t(".notice") # tasks_path = Por padrão o rails redireciona para a view show @task, portanto vamos alterar essa rota para o index
+      # Fiz a trdução no arquivo pt-BR.yml e por isso usamos esse método t(".notice") para exibir as mensagens traduzidas de acordo com o idioma padrão do usuário
+      
+    else # Senão for salva
+      flash.now[:alert] = @task.errors.full_messages.to_sentence # flash.now[:alert] = Exibir uma mensagem de alerta (é necessário usar .now quando em seguida temos um render e não um redirect_to); @post = Instancia do banco de dados; # .errors = Rach com varias informações sobre o erro; .full_messages = Retorna um array com todos os erros que ele encontrou; .to_sentence = Transforma tudo em uma frase.
+      render :new, status: :unprocessable_entity 
     end
   end
 
   def update # UPDATE Pega um registro que já existe e salva as alterações 
     if @task.update(task_params)
-      redirect_to @task, notice: "Task was successfully updated." }
+      redirect_to tasks_path, notice: t(".notice") # tasks_path = Por padrão o rails redireciona para a view show @task, portanto vamos alterar essa rota para o index
+      # Fiz a trdução no arquivo pt-BR.yml e por isso usamos esse método t(".notice") para exibir as mensagens traduzidas de acordo com o idioma padrão do usuário
     else
-      render :edit, status: :unprocessable_entity }
+      flash.now[:alert] = @task.errors.full_messages.to_sentence
+      render :edit, status: :unprocessable_entity 
     end
   end
 
   def destroy #DESTROY remove um registro do banco de dados
     @task.destroy
-    redirect_to tasks_url, notice: "Task was successfully destroyed." }
-    # format.json { head :no_content } # vem por padrão assim para rodar em API, podemos apagar se não for usado
+    redirect_to tasks_url, notice: t(".notice") # Fiz a trdução no arquivo pt-BR.yml e por isso usamos esse método t(".notice") para exibir as mensagens traduzidas de acordo com o idioma padrão do usuário
   end
 
   private # Métodos privados
