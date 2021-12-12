@@ -5,3 +5,13 @@ $enable-gradients: true;
 html, body, .container-body {
   height: 100%;
 }
+
+.linha-background {
+  background-image: url("../../assets/images/bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.coluna-background {
+  opacity: 95%;
+}

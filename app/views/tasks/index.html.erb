@@ -1,31 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="row mb-2 linha-titulo-tarefa">
 
-<h1>Tasks</h1>
+  <div class="col-8">
+    <h1 class="display-4"> <%= t(".description") %> </h1> <!-- t(".description") = significa que foi feita a tradução nos arquivos locales -->
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Due date</th>
-      <th>Done</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="col-4 mt-4 text-right">
+    <%= link_to "+Tarefa", new_task_path, class: "btn btn-success" %>
+  </div>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.description %></td>
-        <td><%= task.due_date %></td>
-        <td><%= task.done %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+</div>
+
+<div class="row">
+  <div class="col">
+
+    <% if @tasks.any? %> <!--SE existir uma tarefa-->
+      
+      <table class="table table-borderless"> <!--table-borderless = remover bordar da tabela-->
+        <thead> <!--Cabeçalho tabela-->
+          <tr>
+            <th>Descrição</th>
+            <th>Prazo</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody> <!--Corpo da tabela-->
+          <% @tasks.each do |task| %> <!--Fazer um loop de todas as tarefas que existem nessa variável que tá vindo do controller-->
+            <%= render "table_row", task: task %> <!--task: task = Passar como parâmetro a variável(variável do loop de task/tarefas). Para cada variável, renderizamos uma nova path/nova linha da tabela.-->
+          <% end %>
+        </tbody>
+
+      </table>
+
+    <% else %> <!--SENÃO existir uma tarefa-->
+      <p>Nenhuma tarefa cadastrada!</p>
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Task', new_task_path %>
+  </div>
+</div>

@@ -1,20 +1,27 @@
-<%= form_with(model: task) do |form| %>
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+<div class="row">
+  <div class="col">
 
-  <div class="field">
-    <%= form.label :due_date %>
-    <%= form.date_select :due_date %>
-  </div>
+    <%= form_with(model: task) do |form| %>
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_field :description, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :done %>
-    <%= form.check_box :done %>
-  </div>
+      <div class="form-group">
+        <%= form.label :due_date %>
+        <%= form.date_select :due_date %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="form-group form-check"> <!--"form-check" = Class do bootstrap para formulário com check box-->
+        <%= form.check_box :done, class: "form-check-input" %> <!--"form-check-input" = Class do bootstrap para check box-->
+        <%= form.label :done, class: "form-check-label" %> <!-- "form-check-label" = Class do bootstrap para o texto do check box-->
+      </div>
+
+      <%= form.submit class: "btn btn-primary", data: { disable_with: "Salvando..." } %> <!--
+      Flager(marcador) data { disable_with: "Salvando..."} = toda vez que submeter a a atualização ou a criação de uma tarefa, vai desabilitar o botão e vai aparecer "salvando" -->
+
+      <%= link_to "Cancelar", tasks_path, class: "btn btn-light" %> <!--Botão cancelar, volta para rota de tasks/tarefas-->
+    <% end %>
+
   </div>
-<% end %>
+</div>
