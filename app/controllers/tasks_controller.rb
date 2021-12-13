@@ -5,7 +5,7 @@ class TasksController < ApplicationController # Classe TaksController herda de A
   # GET /tasks or /tasks.json 
   # Essas actions respondem por padrão tanto para /tasks quanto para/tasks.json (para funcionar como API)
   def index # A action INDEX retorna uma coleção de todos os registros(Task.all) e vai jogar para essa variável @tasks (o @ significa que essa variável vai ficar disponivél também nas views)
-    @tasks = Task.order(due_date: :desc, description: :asc) #ordenar pelo prazo descrecente e quando tiverem a mesma data ordenar pela descrição de forma ascendente
+    @tasks = Task.only_parents.order(due_date: :desc, description: :asc) # (only_parents)buscar somente as tarefas pai e (order) ordenar pelo prazo descrecente e quando tiverem a mesma data ordenar pela descrição de forma ascendente
   end
 
   def new # NEW é a página onde criamos um novo registro, por isso Task.new, assim vai ser criado um objeto vazio e quando salvamos no método CREATE ele pesiste com essas informações no banco de dados

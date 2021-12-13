@@ -25,8 +25,13 @@
         </thead>
 
         <tbody> <!--Corpo da tabela-->
-          <% @tasks.each do |task| %> <!--Fazer um loop de todas as tarefas que existem nessa variável que tá vindo do controller-->
-            <%= render "table_row", task: task.decorate %> <!--task: task = Passar como parâmetro a variável(variável do loop de task/tarefas). Para cada variável, renderizamos uma nova path/nova linha da tabela.-->
+          <% @tasks.each do |task| %> <!-- Fazer um loop de todas as tarefas pai que existem nessa variável que tá vindo do controller -->
+            <%= render "table_row", task: task.decorate %> <!-- task: task = Passar como parâmetro a variável(variável do loop de task/tarefas). Para cada variável, renderizamos uma nova path/nova linha da tabela. -->
+
+            <% task.sub_tasks.order(:due_date).each do |sub_task| %> <!-- Chamar o render novamente para cada uma das subtarefas; para isso fazemos um loop e para cada subtarefa que a tarefa tiver será renderizada mais uma linha na tabela. São dois loops, um dentro do outro, duas interações. -->
+              <%= render "table_row", task: sub_task %> <!-- Na path table_row temos que especificar como ela deve diferenciar uma task de uma sub task-->
+            <% end %>
+
           <% end %>
         </tbody>
 
