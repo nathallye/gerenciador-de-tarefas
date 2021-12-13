@@ -2,6 +2,11 @@
   <div class="col">
 
     <%= form_with(model: task) do |form| %> 
+      <%= form.hidden_field :parent_id, 
+        value: task.parent_id || params[:parent_id] %> 
+        <!-- Campo escondido do id da tarefa pai, para associar lá no controller das tarefas a que tarefa determinada subtarefa pertence 
+        * ele vai buscar esse atributo em task.parent_id(pegar o id de uma tarefa existente - no caso de uma subtarefa) ||(OU/OR) params[:parent_id](do parametros da url - no caso de uma nova tarefa)
+        * Essa informação vai ser passada para o controller, então é necessário especificar esse atributo, para poder salvar (no método task_params) -->
       <div class="form-group">
         <%= form.label :description %>
         <%= form.text_field :description, class: "form-control" %>

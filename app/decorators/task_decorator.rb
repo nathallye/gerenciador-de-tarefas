@@ -3,8 +3,8 @@ class TaskDecorator < Draper::Decorator
 
   def symbol
     case status #caso status da tarefa
-    when "pending" then "☐" #seja "pendente" então "exibir tal simbolo"
-    when "done"    then "☑" #seja "concluída" então "exibir tal simbolo"
+    when "pending" then "•" #seja "pendente" então "exibir tal simbolo"
+    when "done"    then "✔" #seja "concluída" então "exibir tal simbolo"
     when "expired" then "✗" #seja "prazo expirado" então "exibir tal simbolo"
     end
   end

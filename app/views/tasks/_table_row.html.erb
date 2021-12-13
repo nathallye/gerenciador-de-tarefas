@@ -21,7 +21,12 @@
       <!-- Na segunda coluna será exibido o prazo -->
 
       <td class="text-right pr-0"> <!-- Na segunda coluna serão exibidos os botões -->
+        <% if task.parent? %> <!-- Só vai exibir o botão "+Sub_tarefa" SE a tarefas for pai -->
+          <%= link_to t(".one_more_subtask"), new_task_path(parent_id: task.id), class: "btn-sm btn-dark" %> <!-- parent_id = parametro e em seguida tá pasando o id da tarefa (task.id)-->
+        <% end %>
+
         <%= link_to t(".edit"), edit_task_path(task.id), class: "btn-sm btn-secondary" %> <!-- btn-sm = Class bootstrap small para o botão ficar menor-->
+
         <%= link_to t(".delete"), task_path(task.id), method: :delete, 
       class: "btn-sm btn-danger",
       data: { :confirm => t(".are_you_sure") } %>

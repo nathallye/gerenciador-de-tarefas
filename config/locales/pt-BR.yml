@@ -13,15 +13,19 @@ pt-BR:
       done: "Prazo"
       no_tasks_registered: "Nenhuma tarefa cadastrada!"
     new: 
+      description_new_subtask: "Nova sub-tarefa"
       description_new_task: "Nova tarefa"
     edit:
       description_edit_task: "Editar tarefa"
+      description_edit_subtask: "Editar sub-tarefa"
     form: 
       cancel: "Cancelar"
     table_row:
+      one_more_subtask: "+Sub-tarefa"
       edit: "Editar"
       delete: "Apagar"
       are_you_sure: "Tem certeza que deseja apagar essa tarefa?"
+
 
   activerecord: 
     models:

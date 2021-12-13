@@ -51,7 +51,7 @@ class TasksController < ApplicationController # Classe TaksController herda de A
   end
 
   def task_params # Filtra os parâmetros/colunas do banco de dados que queremos permitir que o usuário passe para o controller/ possa acessar/alterar por questões de segurança
-    params.require(:task).permit(:description, :due_date, :done)
+    params.require(:task).permit(:description, :due_date, :done, :parent_id)
   end
   
 end
