@@ -10,5 +10,15 @@ class Task < ApplicationRecord
 
   scope :only_parents, -> { where(parent_id: nil) } # prósito do escopo: em alguns casos vamos querer retornar somente as tarefas principais, não as subtarefas, e para isso é necessário fazer um filtro, uma "query"(solicitação) no banco de dados; vamos usar no controller para @tasks;
   # :only_parents = (só_pais) Nome do escopo; -> {} = passando um bloco de código; where(parent_id: nil) = query quando parent_id for nulo(não tiver);
+
+  def parent?
+    parent_id.nil? # esse método vai retornar true ou false
+  end
+
+  def sub_task?
+    !parent? # se parent? for verdadeiro, sub_task vai ser falso (! retorna o inverso)
+  end
+  
+  
 end
 

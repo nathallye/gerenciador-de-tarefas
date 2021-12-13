@@ -1,27 +1,33 @@
-<tr class="border-top">
+<div class="row">
+  <div class="col">
 
-  <td> <!-- Primeira coluna será exibido a descrição da tarefa -->
+    <tr class="<%= task.parent? ? "border-top" : "" %>" > <!-- (?) SE a tarefa for pai exibir a borda no topo, (:) SENÃO exibir nada; esse método "parent?" foi criado no model. -->
 
-    <span class="text-<%= task.css_color %>">
-      <%= task.symbol %>
-    </span>
+      <td class="<%= task.sub_task? ? "pl-5" : "" %>" > <!-- Primeira coluna será exibido a descrição da tarefa -->
 
-    <% if task.done? %> <!-- SE tarefa estiver concluída(done?). Como utilizamos done como booleano no banco de dados o rails automaticamente cria esse método com "?" no final. -->
-      <s class="text-muted"> <%= task.description %> </s> <!-- Tag esse para sublinhar a tarefa; text-muted = Texto fica acinzentado -->
-    <% else %>
-      <%= task.description %>
-    <% end %>
+        <span class="text-<%= task.css_color %>">
+          <%= task.symbol %>
+        </span>
 
-  </td>
+        <% if task.done? %> <!-- SE tarefa estiver concluída(done?). Como utilizamos done como booleano no banco de dados o rails automaticamente cria esse método com "?" no final. -->
+          <s class="text-muted"> <%= task.description %> </s> <!-- Tag esse para sublinhar a tarefa; text-muted = Texto fica acinzentado -->
+        <% else %>
+          <%= task.description %>
+        <% end %>
 
-  <td> <%= I18n.l(task.due_date) %> </td>
- <!-- Na segunda coluna será exibido o prazo -->
+      </td>
 
-  <td> <!-- Na segunda coluna serão exibidos os botões -->
-    <%= link_to t(".edit"), edit_task_path(task.id), class: "btn-sm btn-secondary" %> <!-- btn-sm = Class bootstrap small para o botão ficar menor-->
-    <%= link_to t(".delete"), task_path(task.id), method: :delete, 
+      <td> <%= I18n.l(task.due_date) %> </td>
+      <!-- Na segunda coluna será exibido o prazo -->
+
+      <td class="text-right pr-0"> <!-- Na segunda coluna serão exibidos os botões -->
+        <%= link_to t(".edit"), edit_task_path(task.id), class: "btn-sm btn-secondary" %> <!-- btn-sm = Class bootstrap small para o botão ficar menor-->
+        <%= link_to t(".delete"), task_path(task.id), method: :delete, 
       class: "btn-sm btn-danger",
       data: { :confirm => t(".are_you_sure") } %>
-  </td>
+      </td>
 
-</tr>
+    </tr>
+
+  </div>
+</div>
