@@ -7,11 +7,21 @@ pt-BR:
     destroy:
       notice: "Tarefa deletada com sucesso!"
     index:
-      description: "Tarefas"
+      description_tasks: "Tarefas"
+      one_more_task: "+Tarefa"
+      description: "Descrição"
+      done: "Prazo"
+      no_tasks_registered: "Nenhuma tarefa cadastrada!"
     new: 
-      description: "Nova tarefa"
+      description_new_task: "Nova tarefa"
     edit:
-      description: "Editar tarefa"
+      description_edit_task: "Editar tarefa"
+    form: 
+      cancel: "Cancelar"
+    table_row:
+      edit: "Editar"
+      delete: "Apagar"
+      are_you_sure: "Tem certeza que deseja apagar essa tarefa?"
 
   activerecord: 
     models:

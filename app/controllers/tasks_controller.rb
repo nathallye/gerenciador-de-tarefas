@@ -5,7 +5,7 @@ class TasksController < ApplicationController # Classe TaksController herda de A
   # GET /tasks or /tasks.json 
   # Essas actions respondem por padrão tanto para /tasks quanto para/tasks.json (para funcionar como API)
   def index # A action INDEX retorna uma coleção de todos os registros(Task.all) e vai jogar para essa variável @tasks (o @ significa que essa variável vai ficar disponivél também nas views)
-    @tasks = Task.all
+    @tasks = Task.order(due_date: :desc, description: :asc) #ordenar pelo prazo descrecente e quando tiverem a mesma data ordenar pela descrição de forma ascendente
   end
 
   def new # NEW é a página onde criamos um novo registro, por isso Task.new, assim vai ser criado um objeto vazio e quando salvamos no método CREATE ele pesiste com essas informações no banco de dados
@@ -46,7 +46,8 @@ class TasksController < ApplicationController # Classe TaksController herda de A
   private # Métodos privados
 
   def set_task
-    @task = Task.find(params[:id]) # Define uma variável @task, que vai buscar no banco de dados de acordo com os params passado para essa action
+    @task = Task.find(params[:id]).decorate # Define uma variável @task, que vai buscar no banco de dados de acordo com os params passado para essa action
+    # .decorate = Para usarmos o padrão de projeto decorator
   end
 
   def task_params # Filtra os parâmetros/colunas do banco de dados que queremos permitir que o usuário passe para o controller/ possa acessar/alterar por questões de segurança

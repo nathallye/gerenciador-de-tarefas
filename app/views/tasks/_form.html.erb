@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
 
-    <%= form_with(model: task) do |form| %>
+    <%= form_with(model: task) do |form| %> 
       <div class="form-group">
         <%= form.label :description %>
         <%= form.text_field :description, class: "form-control" %>
@@ -20,7 +20,7 @@
       <%= form.submit class: "btn btn-primary", data: { disable_with: "Salvando..." } %> <!--
       Flager(marcador) data { disable_with: "Salvando..."} = toda vez que submeter a a atualização ou a criação de uma tarefa, vai desabilitar o botão e vai aparecer "salvando" -->
 
-      <%= link_to "Cancelar", tasks_path, class: "btn btn-light" %> <!--Botão cancelar, volta para rota de tasks/tarefas-->
+      <%= link_to t(".cancel"), tasks_path, class: "btn btn-light" %> <!--Botão cancelar, volta para rota de tasks/tarefas-->
     <% end %>
 
   </div>

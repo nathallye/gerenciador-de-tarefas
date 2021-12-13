@@ -1,11 +1,11 @@
 <div class="row mb-2 linha-titulo-tarefa">
 
   <div class="col-8">
-    <h1 class="display-4"> <%= t(".description") %> </h1> <!-- t(".description") = significa que foi feita a tradução nos arquivos locales -->
+    <h1 class="display-4"> <%= t(".description_tasks") %> </h1> <!-- t(".description") = significa que foi feita a tradução nos arquivos -->
   </div>
 
   <div class="col-4 mt-4 text-right">
-    <%= link_to "+Tarefa", new_task_path, class: "btn btn-success" %>
+    <%= link_to t(".one_more_task"), new_task_path, class: "btn btn-dark" %>
   </div>
 
 </div>
@@ -18,22 +18,22 @@
       <table class="table table-borderless"> <!--table-borderless = remover bordar da tabela-->
         <thead> <!--Cabeçalho tabela-->
           <tr>
-            <th>Descrição</th>
-            <th>Prazo</th>
+            <th> <%= t(".description") %> </th>
+            <th> <%= t(".done") %> </th>
             <th></th>
           </tr>
         </thead>
 
         <tbody> <!--Corpo da tabela-->
           <% @tasks.each do |task| %> <!--Fazer um loop de todas as tarefas que existem nessa variável que tá vindo do controller-->
-            <%= render "table_row", task: task %> <!--task: task = Passar como parâmetro a variável(variável do loop de task/tarefas). Para cada variável, renderizamos uma nova path/nova linha da tabela.-->
+            <%= render "table_row", task: task.decorate %> <!--task: task = Passar como parâmetro a variável(variável do loop de task/tarefas). Para cada variável, renderizamos uma nova path/nova linha da tabela.-->
           <% end %>
         </tbody>
 
       </table>
 
     <% else %> <!--SENÃO existir uma tarefa-->
-      <p>Nenhuma tarefa cadastrada!</p>
+      <p> <%= t(".no_tasks_registered") %> </p>
     <% end %>
 
   </div>

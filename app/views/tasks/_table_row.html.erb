@@ -1,6 +1,27 @@
 <tr class="border-top">
-  <td> <%= task.description %> </td>
- <!--Primeira coluna será exibido a descrição da tarefa-->
+
+  <td> <!-- Primeira coluna será exibido a descrição da tarefa -->
+
+    <span class="text-<%= task.css_color %>">
+      <%= task.symbol %>
+    </span>
+
+    <% if task.done? %> <!-- SE tarefa estiver concluída(done?). Como utilizamos done como booleano no banco de dados o rails automaticamente cria esse método com "?" no final. -->
+      <s class="text-muted"> <%= task.description %> </s> <!-- Tag esse para sublinhar a tarefa; text-muted = Texto fica acinzentado -->
+    <% else %>
+      <%= task.description %>
+    <% end %>
+
+  </td>
+
   <td> <%= I18n.l(task.due_date) %> </td>
- <!--Na segunda coluna será exibido o prazo-->
+ <!-- Na segunda coluna será exibido o prazo -->
+
+  <td> <!-- Na segunda coluna serão exibidos os botões -->
+    <%= link_to t(".edit"), edit_task_path(task.id), class: "btn-sm btn-secondary" %> <!-- btn-sm = Class bootstrap small para o botão ficar menor-->
+    <%= link_to t(".delete"), task_path(task.id), method: :delete, 
+      class: "btn-sm btn-danger",
+      data: { :confirm => t(".are_you_sure") } %>
+  </td>
+
 </tr>
