@@ -1,4 +1,6 @@
 class TasksController < ApplicationController # Classe TaksController herda de ApplicationCon...
+  include Exportable
+  
   before_action :set_task, only: %i[edit update destroy] # before_action (antes de cada ação em português) = Metodo especial do Rails que explica para o controller que ele precisa rodar esse primeiro parâmetro :set_task, only (somente) para essas ações %i[edit update destroy]
   # :set_task é um método definido nesse arquivo
   

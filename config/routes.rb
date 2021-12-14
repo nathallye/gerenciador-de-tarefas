@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root "tasks#index" #página inicial 
 
-  resources :tasks, except: [:show] 
+  resources :tasks, except: [:show] do
+    collection  do
+      get :export_csv
+    end
+  end
   # Quando utilizamos o resouces internamente o Rails tá adicionando 7 actions/rotas: index, show, new, create, edit, update e destroy
 
   # except: [:show]  = except para excluir uma rota, em seguida passamos um array de simbols de qual rota queremos excluir([:show] OU %i[show])

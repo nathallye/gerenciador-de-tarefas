@@ -5,7 +5,8 @@
   </div>
 
   <div class="col-4 mt-4 text-right">
-    <%= link_to t(".one_more_task"), new_task_path, class: "btn btn-dark" %>
+    <%= link_to t(".one_more_task"), new_task_path, class: "btn btn-info" %>
+    <%= link_to t(".csv"), export_csv_tasks_path, class: "btn btn-success" %>
   </div>
 
 </div>

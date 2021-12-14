@@ -9,6 +9,7 @@ pt-BR:
     index:
       description_tasks: "Tarefas"
       one_more_task: "+Tarefa"
+      csv: "Exportar CSV"
       description: "Descrição"
       done: "Prazo"
       no_tasks_registered: "Nenhuma tarefa cadastrada!"
