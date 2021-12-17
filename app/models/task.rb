@@ -19,6 +19,26 @@ class Task < ApplicationRecord
     !parent? # se parent? for verdadeiro, sub_task vai ser falso (! retorna o inverso)
   end
   
+  def done_subtasks? #chamar esse método no controller (update)
+    count_total_subtasks = 0
+    count_total_done = 0
+
+    task_parent = self.parent
+    task_parent.sub_tasks.each do |subtask|
+      count_total_subtasks += 1
+      if subtask.done == true
+        count_total_done += 1
+      end
+    end
+
+    if count_total_subtasks == count_total_done
+      task_parent.done = true
+      task_parent.save
+    else
+      task_parent.done = false
+      task_parent.save
+    end
+  end
   
 end
 

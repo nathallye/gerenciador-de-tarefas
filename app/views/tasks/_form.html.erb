@@ -22,7 +22,7 @@
         <%= form.label :done, class: "form-check-label" %> <!-- "form-check-label" = Class do bootstrap para o texto do check box -->
       </div>
 
-      <%= form.submit class: "btn btn-primary", data: { disable_with: "Salvando..." } %> <!--
+      <%= form.submit class: "btn btn-info", data: { disable_with: "Salvando..." } %> <!--
       Flager(marcador) data { disable_with: "Salvando..."} = toda vez que submeter a a atualização ou a criação de uma tarefa, vai desabilitar o botão e vai aparecer "salvando" -->
 
       <%= link_to t(".cancel"), tasks_path, class: "btn btn-light" %> <!--Botão cancelar, volta para rota de tasks/tarefas-->

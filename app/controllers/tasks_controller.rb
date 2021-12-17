@@ -31,7 +31,9 @@ class TasksController < ApplicationController # Classe TaksController herda de A
   end
 
   def update # UPDATE Pega um registro que já existe e salva as alterações 
+
     if @task.update(task_params)
+      @task.done_subtasks?
       redirect_to tasks_path, notice: t(".notice") # tasks_path = Por padrão o rails redireciona para a view show @task, portanto vamos alterar essa rota para o index
       # Fiz a trdução no arquivo pt-BR.yml e por isso usamos esse método t(".notice") para exibir as mensagens traduzidas de acordo com o idioma padrão do usuário
     else
@@ -44,6 +46,7 @@ class TasksController < ApplicationController # Classe TaksController herda de A
     @task.destroy
     redirect_to tasks_url, notice: t(".notice") # Fiz a trdução no arquivo pt-BR.yml e por isso usamos esse método t(".notice") para exibir as mensagens traduzidas de acordo com o idioma padrão do usuário
   end
+
 
   private # Métodos privados
 
